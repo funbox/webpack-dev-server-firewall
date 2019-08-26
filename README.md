@@ -1,4 +1,4 @@
-# @funboxteam/package
+# @funboxteam/webpack-dev-server-firewall
 
 ## Description
 

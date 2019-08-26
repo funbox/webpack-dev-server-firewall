@@ -1,0 +1,27 @@
+{
+  "name": "@funboxteam/webpack-dev-server-firewall",
+  "version": "0.1.0",
+  "description": "Firewall for webpack-dev-server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@funboxteam/eslint-config": "4.14.0",
+    "eslint": "5.16.0",
+    "husky": "3.0.4",
+    "lint-staged": "9.2.4"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged -q"
+    }
+  },
+  "lint-staged": {
+    "index.js": [
+      "eslint --fix --cache -c .eslintrc.js",
+      "git add"
+    ]
+  }
+}
