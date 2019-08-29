@@ -1,6 +1,6 @@
 {
   "name": "@funboxteam/webpack-dev-server-firewall",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Firewall for webpack-dev-server",
   "main": "index.js",
   "scripts": {
