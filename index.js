@@ -59,5 +59,5 @@ function requireAccess(host, onAllow, onDeny) {
 
 function allowHost(host) {
   knownHosts.push(host);
-  fs.writeFileSync(filepath, knownHosts.join('\n'));
+  fs.writeFileSync(filepath, [...new Set(knownHosts)].join('\n'));
 }
