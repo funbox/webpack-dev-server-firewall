@@ -5,11 +5,6 @@ const readline = require('readline');
 
 const filepath = path.resolve(os.homedir(), '.funbox_webpack_known_hosts');
 
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
-
 let knownHosts = [];
 
 try {
@@ -39,6 +34,11 @@ function firewall(app) {
 }
 
 function requireAccess(host, onAllow, onDeny) {
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
+
   rl.question(`${host} is trying to get access to the server. Allow? [yes / no]: `, answer => {
     if (answer === 'yes') {
       allowHost(host);
@@ -52,6 +52,8 @@ function requireAccess(host, onAllow, onDeny) {
       console.log('The request has been denied.');
       onDeny();
     }
+
+    rl.close();
   });
 }
 
