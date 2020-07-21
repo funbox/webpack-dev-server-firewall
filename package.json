@@ -3,6 +3,9 @@
   "version": "1.0.1",
   "description": "Firewall for webpack-dev-server",
   "main": "index.js",
+  "bin": {
+    "webpack-dev-server-firewall": "./cli.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

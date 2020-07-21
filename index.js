@@ -43,6 +43,8 @@ function forgetKnownHosts() {
 
   knownHosts = [];
   allowHost('127.0.0.1');
+
+  console.log('Known hosts list has been successfully cleared');
 }
 
 function requestAccess(host, onAllow, onDeny) {
