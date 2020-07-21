@@ -8,10 +8,10 @@
   },
   "license": "UNLICENSED",
   "devDependencies": {
-    "@funboxteam/eslint-config": "4.14.0",
+    "@funboxteam/eslint-config": "5.0.0",
     "eslint": "5.16.0",
-    "husky": "3.0.4",
-    "lint-staged": "9.2.4"
+    "husky": "4.2.5",
+    "lint-staged": "10.2.11"
   },
   "husky": {
     "hooks": {
@@ -19,9 +19,8 @@
     }
   },
   "lint-staged": {
-    "index.js": [
-      "eslint --fix --cache -c .eslintrc.js",
-      "git add"
+    "*.js": [
+      "eslint --fix --cache -c .eslintrc.js"
     ]
   }
 }
