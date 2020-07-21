@@ -21,6 +21,7 @@ try {
 }
 
 module.exports = firewall;
+module.exports.forgetKnownHosts = forgetKnownHosts;
 
 function firewall(app) {
   // https://expressjs.com/en/4x/api.html
@@ -28,12 +29,23 @@ function firewall(app) {
     if (knownHosts.includes(req.ip)) {
       next();
     } else {
-      requireAccess(req.ip, next, () => res.sendStatus(403));
+      requestAccess(req.ip, next, () => res.sendStatus(403));
     }
   });
 }
 
-function requireAccess(host, onAllow, onDeny) {
+function forgetKnownHosts() {
+  try {
+    fs.unlinkSync(filepath);
+  } catch (err) {
+    if (err.code !== 'ENOENT') throw err;
+  }
+
+  knownHosts = [];
+  allowHost('127.0.0.1');
+}
+
+function requestAccess(host, onAllow, onDeny) {
   const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
