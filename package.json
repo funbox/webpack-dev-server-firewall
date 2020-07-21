@@ -2,14 +2,24 @@
   "name": "@funboxteam/webpack-dev-server-firewall",
   "version": "1.0.1",
   "description": "Firewall for webpack-dev-server",
+  "keywords": ["webpack", "webpack-dev-server", "firewall"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/funbox/webpack-dev-server-firewall"
+  },
   "main": "index.js",
   "bin": {
     "webpack-dev-server-firewall": "./cli.js"
   },
+  "files": [
+    "index.js",
+    "cli.js"
+  ],
+  "author": "Igor Adamenko <mail@igoradamenko.com> (https://igoradamenko.com)",
+  "license": "MIT",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint --cache --ext .js ./"
   },
-  "license": "UNLICENSED",
   "devDependencies": {
     "@funboxteam/eslint-config": "5.0.0",
     "eslint": "5.16.0",
