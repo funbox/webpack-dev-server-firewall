@@ -159,4 +159,8 @@ module.exports = {
 };
 ```
 
+## Статьи
+
+- [Protect your dev server](https://dev.to/igoradamenko/protect-your-dev-server-gob)
+
 [![Sponsored by FunBox](https://funbox.ru/badges/sponsored_by_funbox_centered.svg)](https://funbox.ru)
