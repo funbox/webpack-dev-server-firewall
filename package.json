@@ -2,7 +2,11 @@
   "name": "@funboxteam/webpack-dev-server-firewall",
   "version": "2.0.0",
   "description": "Firewall for webpack-dev-server",
-  "keywords": ["webpack", "webpack-dev-server", "firewall"],
+  "keywords": [
+    "webpack",
+    "webpack-dev-server",
+    "firewall"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/funbox/webpack-dev-server-firewall"
