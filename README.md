@@ -31,8 +31,9 @@ npm install --save-dev @funboxteam/webpack-dev-server-firewall
 
 ## Usage
 
-To use the package add it into your project's webpack config as `devServer.before` 
-(or `devServer.setup` for [webpack-dev-server@<2.9.0](https://github.com/webpack/webpack-dev-server/releases/tag/v2.9.0)).
+To use the package add it into your project's webpack config as `devServer.onBeforeSetupMiddleware` (`devServer.before`
+for [webpack-dev-server@<4.0.0](https://github.com/webpack/webpack-dev-server/releases/tag/v4.0.0) or `devServer.setup` 
+for [webpack-dev-server@<2.9.0](https://github.com/webpack/webpack-dev-server/releases/tag/v2.9.0)).
 
 ```js
 const firewall = require('@funboxteam/webpack-dev-server-firewall');
@@ -41,13 +42,13 @@ module.exports = {
   // ...
   devServer: {
     // ...
-    before: firewall,
+    onBeforeSetupMiddleware: firewall,
   },
 };
 ```
 
 `firewall` function expects an [Express application](https://expressjs.com/en/4x/api.html#app) as an argument.
-In case of other `before` hooks existence, inject it in this way: 
+In case of other `onBeforeSetupMiddleware` hooks existence, inject it in this way: 
 
 ```js
 const firewall = require('@funboxteam/webpack-dev-server-firewall');
@@ -56,8 +57,8 @@ module.exports = {
   // ...
   devServer: {
     // ...
-    before(app) {
-      firewall(app);
+    onBeforeSetupMiddleware(devServer) {
+      firewall(devServer);
       // ...
     },
   },
@@ -137,7 +138,7 @@ by the firewall instance.
 
 ### Methods
 
-Besides the `before` hook the packages exports `forgetKnownHosts` method that can be used for clearing 
+Besides the `onBeforeSetupMiddleware` hook the packages exports `forgetKnownHosts` method that can be used for clearing 
 the list of allowed IPs from JS script.
 
 E.g. the code below clears the list on every server start:
@@ -151,7 +152,7 @@ module.exports = {
   // ...
   devServer: {
     // ...
-    before: firewall,
+    onBeforeSetupMiddleware: firewall,
   },
 };
 ```
