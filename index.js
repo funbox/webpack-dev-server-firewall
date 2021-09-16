@@ -23,7 +23,11 @@ try {
 module.exports = firewall;
 module.exports.forgetKnownHosts = forgetKnownHosts;
 
-function firewall(app) {
+function firewall(devServer) {
+  // check if webpack-dev-server@4 or earlier used
+  // and take appropriate app entity
+  const app = 'app' in devServer ? devServer.app : devServer;
+
   // https://expressjs.com/en/4x/api.html
   app.use((req, res, next) => {
     if (knownHosts.includes(req.ip)) {
