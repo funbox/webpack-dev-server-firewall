@@ -30,9 +30,10 @@ npm install --save-dev @funboxteam/webpack-dev-server-firewall
 
 ## Использование
 
-Для того, чтобы пакет начал работать, необходимо подключить его в конфиге
-Вебпака, в разделе `devServer.before` 
-(или `devServer.setup`, если [webpack-dev-server@<2.9.0](https://github.com/webpack/webpack-dev-server/releases/tag/v2.9.0)):
+Для того, чтобы пакет начал работать, необходимо подключить его в конфиге Вебпака, в разделе 
+`devServer.onBeforeSetupMiddleware` (`devServer.before` 
+для [webpack-dev-server@<4.0.0](https://github.com/webpack/webpack-dev-server/releases/tag/v4.0.0) или `devServer.setup` 
+для [webpack-dev-server@<2.9.0](https://github.com/webpack/webpack-dev-server/releases/tag/v2.9.0)):
 
 ```js
 const firewall = require('@funboxteam/webpack-dev-server-firewall');
@@ -41,13 +42,13 @@ module.exports = {
   // ...
   devServer: {
     // ...
-    before: firewall,
+    onBeforeSetupMiddleware: firewall,
   },
 };
 ```
 
 Функция `firewall` ожидает [Express application](https://expressjs.com/en/4x/api.html#app) в качестве аргумента,
-потому, если в проекте уже используются какие-то `before`-хуки, можно сделать так:
+потому, если в проекте уже используются какие-то `onBeforeSetupMiddleware`-хуки, можно сделать так:
 
 ```js
 const firewall = require('@funboxteam/webpack-dev-server-firewall');
@@ -56,8 +57,8 @@ module.exports = {
   // ...
   devServer: {
     // ...
-    before(app) {
-      firewall(app);
+    onBeforeSetupMiddleware(devServer) {
+      firewall(devServer);
       // ...
     },
   },
@@ -140,7 +141,7 @@ webpack-dev-server-firewall forget-known-hosts
 
 ### Методы
 
-Помимо `before`-хука пакет также экспортирует метод `forgetKnownHosts` для вызова функции очистки 
+Помимо `onBeforeSetupMiddleware`-хука пакет также экспортирует метод `forgetKnownHosts` для вызова функции очистки 
 списка разрешённых IP из JS-скрипта. 
 
 Например, при таком описании конфига для Вебпака список IP будет очищаться при каждом запуске сервера:
@@ -154,7 +155,7 @@ module.exports = {
   // ...
   devServer: {
     // ...
-    before: firewall,
+    onBeforeSetupMiddleware: firewall,
   },
 };
 ```
