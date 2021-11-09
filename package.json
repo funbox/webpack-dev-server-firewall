@@ -22,7 +22,8 @@
   "author": "Igor Adamenko <mail@igoradamenko.com> (https://igoradamenko.com)",
   "license": "MIT",
   "scripts": {
-    "lint": "eslint --cache --ext .js ./"
+    "lint": "eslint --cache --ext .js ./",
+    "prepublishOnly": "lawyer"
   },
   "devDependencies": {
     "@funboxteam/eslint-config": "5.0.0",
