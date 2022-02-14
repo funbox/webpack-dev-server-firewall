@@ -26,8 +26,8 @@
     "prepublishOnly": "lawyer"
   },
   "devDependencies": {
-    "@funboxteam/eslint-config": "5.0.0",
-    "eslint": "5.16.0",
+    "@funboxteam/eslint-config": "7.1.0",
+    "eslint": "7.32.0",
     "husky": "4.2.5",
     "lint-staged": "10.2.11"
   },
