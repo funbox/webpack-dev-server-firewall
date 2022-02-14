@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const { forgetKnownHosts } = require('.');
-const { version } = require('./package');
+const { version } = require('./package.json');
 
 if (process.argv[2] === 'forget-known-hosts') {
   forgetKnownHosts();
