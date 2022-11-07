@@ -23,7 +23,7 @@
   "license": "MIT",
   "scripts": {
     "lint": "eslint --cache --ext .js ./",
-    "prepublishOnly": "lawyer"
+    "prepublishOnly": "if [ -z \"$CI\" ]; then lawyer; fi"
   },
   "devDependencies": {
     "@funboxteam/eslint-config": "7.1.0",
