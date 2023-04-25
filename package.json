@@ -28,8 +28,8 @@
   "devDependencies": {
     "@funboxteam/eslint-config": "7.1.0",
     "eslint": "7.32.0",
-    "husky": "4.3.8",
-    "lint-staged": "10.2.11"
+    "husky": "8.0.3",
+    "lint-staged": "13.2.1"
   },
   "husky": {
     "hooks": {
