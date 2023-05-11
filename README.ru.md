@@ -30,10 +30,8 @@ npm install --save-dev @funboxteam/webpack-dev-server-firewall
 
 ## Использование
 
-Для того, чтобы пакет начал работать, необходимо подключить его в конфиге Вебпака, в разделе 
-`devServer.onBeforeSetupMiddleware` (`devServer.before` 
-для [webpack-dev-server@<4.0.0](https://github.com/webpack/webpack-dev-server/releases/tag/v4.0.0) или `devServer.setup` 
-для [webpack-dev-server@<2.9.0](https://github.com/webpack/webpack-dev-server/releases/tag/v2.9.0)):
+Для того чтобы пакет начал работать, необходимо подключить его в конфиге Вебпака, в разделе 
+`devServer.setupMiddlewares`:
 
 ```js
 const firewall = require('@funboxteam/webpack-dev-server-firewall');
@@ -42,30 +40,24 @@ module.exports = {
   // ...
   devServer: {
     // ...
-    onBeforeSetupMiddleware: firewall,
-  },
-};
-```
-
-Функция `firewall` ожидает [Express application](https://expressjs.com/en/4x/api.html#app) в качестве аргумента,
-потому, если в проекте уже используются какие-то `onBeforeSetupMiddleware`-хуки, можно сделать так:
-
-```js
-const firewall = require('@funboxteam/webpack-dev-server-firewall');
- 
-module.exports = {
-  // ...
-  devServer: {
-    // ...
-    onBeforeSetupMiddleware(devServer) {
+    setupMiddlewares: (middlewares, devServer) => {
       firewall(devServer);
       // ...
+      return middlewares;
     },
   },
 };
 ```
 
-Важно в таком случае подключать `firewall` до всех остальных обработчиков.
+С более старыми версиями webpack-dev-server нужно использовать:
+
+- `devServer.onBeforeSetupMiddleware` для [<4.7.0](https://github.com/webpack/webpack-dev-server/releases/tag/v4.7.0);
+- `devServer.before` для [<4.0.0](https://github.com/webpack/webpack-dev-server/releases/tag/v4.0.0);
+- `devServer.setup` для [<2.9.0](https://github.com/webpack/webpack-dev-server/releases/tag/v2.9.0).
+
+Функция `firewall` ожидает [Express application](https://expressjs.com/en/4x/api.html#app) в качестве аргумента.
+
+Важно подключать `firewall` до всех остальных обработчиков.
 
 ## Механизм работы
 
