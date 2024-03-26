@@ -11,34 +11,40 @@
     "type": "git",
     "url": "https://github.com/funbox/webpack-dev-server-firewall"
   },
-  "main": "index.js",
+  "main": "public/index.js",
+  "types": "public/index.d.ts",
   "bin": {
-    "webpack-dev-server-firewall": "./cli.js"
+    "webpack-dev-server-firewall": "./public/cli.js"
   },
-  "files": [
-    "index.js",
-    "cli.js"
-  ],
   "author": "Igor Adamenko <mail@igoradamenko.com> (https://igoradamenko.com)",
   "license": "MIT",
   "scripts": {
-    "lint": "eslint --cache --ext .js ./",
-    "prepublishOnly": "if [ -z \"$CI\" ]; then lawyer; fi"
+    "lint": "eslint .",
+    "build": "tsc",
+    "prepack": "rm -rf public && npm run build"
   },
   "devDependencies": {
-    "@funboxteam/eslint-config": "7.3.0",
-    "eslint": "7.32.0",
-    "husky": "4.3.8",
-    "lint-staged": "10.2.11"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged -q"
-    }
+    "@babel/core": "7.24.0",
+    "@funboxteam/eslint-config": "7.4.0",
+    "@typescript-eslint/eslint-plugin": "6.21.0",
+    "@typescript-eslint/parser": "6.21.0",
+    "eslint": "8.2.0",
+    "eslint-import-resolver-typescript": "3.6.1",
+    "eslint-plugin-fp": "2.3.0",
+    "eslint-plugin-import": "2.29.1",
+    "eslint-plugin-security": "1.7.1",
+    "lint-staged": "15.2.2",
+    "simple-git-hooks": "2.11.1",
+    "typescript": "5.3.3",
+    "webpack-dev-server": "5.0.4"
   },
   "lint-staged": {
-    "*.js": [
-      "eslint --fix --cache -c .eslintrc.js"
+    "src/*.ts": [
+      "eslint --fix"
     ]
+  },
+  "simple-git-hooks": {
+    "pre-commit": "node_modules/.bin/lint-staged",
+    "post-commit": "git update-index --again"
   }
 }

@@ -67,3 +67,8 @@ Session.vim
 
 # -- ESLint --
 .eslintcache
+
+
+# -- Project --
+public/
+*.tgz
