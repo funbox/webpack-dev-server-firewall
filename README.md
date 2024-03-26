@@ -36,6 +36,10 @@ To use the package add it into your project's webpack config in `devServer.setup
 ```js
 const firewall = require('@funboxteam/webpack-dev-server-firewall');
 
+or
+
+import { firewall } from '@funboxteam/webpack-dev-server-firewall';
+
 module.exports = {
   // ...
   devServer: {

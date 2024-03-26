@@ -36,6 +36,10 @@ npm install --save-dev @funboxteam/webpack-dev-server-firewall
 ```js
 const firewall = require('@funboxteam/webpack-dev-server-firewall');
 
+или
+
+import { firewall } from '@funboxteam/webpack-dev-server-firewall';
+
 module.exports = {
   // ...
   devServer: {
